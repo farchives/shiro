@@ -1,0 +1,56 @@
+---
+const links = [
+  { href: "#meet", label: "Meet Shiro" },
+  { href: "#schedule", label: "Schedule" },
+  { href: "#feeding", label: "Feeding" },
+  { href: "#play", label: "Play" },
+  { href: "#solo", label: "Solo Time" },
+  { href: "#alone", label: "Leaving Her" },
+  { href: "#gallery", label: "Photos" },
+];
+---
+
+<nav
+  class="sticky top-0 z-40 w-full backdrop-blur-md bg-cream/75 border-b border-ink/5"
+  aria-label="Primary"
+>
+  <div class="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display text-3xl text-ink leading-none">
+      Shiro
+    </a>
+
+    <ul class="hidden md:flex items-center gap-7 text-sm font-medium text-ink-soft">
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="hover:text-ink transition-colors duration-200"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <a
+      href="#emergency"
+      class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-coral text-cream text-sm font-semibold shadow-soft hover:bg-coral-deep transition-colors duration-200"
+    >
+      Emergency
+    </a>
+  </div>
+</nav>
+
+<a
+  href="#emergency"
+  aria-label="Jump to emergency information"
+  class="sm:hidden fixed bottom-5 right-5 z-40 inline-flex items-center justify-center w-14 h-14 rounded-full bg-coral text-cream shadow-lift hover:bg-coral-deep transition-colors"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 9v4" />
+    <path d="M12 17h.01" />
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+  </svg>
+</a>

@@ -1,0 +1,113 @@
+---
+import Reveal from "./Reveal.tsx";
+
+const events = [
+  {
+    time: "7:30 AM",
+    title: "Wake up",
+    body: "First thing is a potty break (pee and poop), followed by a morning walk.",
+    note: "If you took her out for a late potty break the night before, you can sleep in until 8:30–9:00 AM at the latest, then go straight to breakfast.",
+  },
+  {
+    time: "8:00 – 9:00 AM",
+    title: "Breakfast",
+    note: "Same rule as dinner — no play or walks for 30–45 minutes after, to avoid bloating.",
+  },
+  { time: "9:00 AM", title: "Nap time" },
+  { time: "11:00 AM", title: "Nap time continues" },
+  { time: "11:30 AM", title: "Midday play and nap time continues" },
+  { time: "1:00 PM", title: "Afternoon nap" },
+  {
+    time: "2:00 PM",
+    title: "Potty break",
+    body: "She'll need to go out to pee and poop around this time.",
+  },
+  { time: "3:00 PM", title: "Afternoon nap continues" },
+  {
+    time: "4:30 PM",
+    title: "Longer walk + potty break",
+    body: "Pee and maybe poop.",
+  },
+  {
+    time: "5:30 PM",
+    title: "Dinner window opens",
+    body: "You can feed her anytime between now and 7:30 PM.",
+  },
+  {
+    time: "6:00 PM",
+    title: "Dinner window continues",
+    body: "Don't play or take her out right after she's eaten.",
+    note: "Give her at least 30–45 minutes after dinner before any activity.",
+  },
+  { time: "7:00 PM", title: "Evening nap" },
+  {
+    time: "8:30 PM",
+    title: "Active time",
+    body: "She'll be playing and looking for some attention.",
+  },
+  { time: "9:00 PM", title: "Active time continues — or she may just nap" },
+  {
+    time: "10:00 PM",
+    title: "Winding down for the night",
+    body: "Followed by bedtime.",
+    note: "Keep her out of the room. If you want her to sleep in the room, don't let her on the bed.",
+  },
+  {
+    time: "10:30 – 11:00 PM",
+    title: "Last potty break (optional but recommended)",
+    body: "Take her out for a quick pee right before you head to bed.",
+    note: "Doing this lets you sleep in until 8:30–9:00 AM the next morning.",
+  },
+];
+---
+
+<div class="relative">
+  <div
+    aria-hidden="true"
+    class="absolute left-[8.5rem] sm:left-[10rem] top-2 bottom-2 w-px bg-ink/10"
+  ></div>
+
+  <ol class="space-y-6">
+    {
+      events.map((e, i) => (
+        <Reveal client:visible delay={Math.min(i * 0.04, 0.4)}>
+          <li class="relative flex gap-5 sm:gap-7 items-start">
+            <div class="w-28 sm:w-32 flex-shrink-0 pt-1.5 text-right">
+              <span class="font-semibold text-ink text-sm sm:text-base tabular-nums">
+                {e.time}
+              </span>
+            </div>
+
+            <span
+              aria-hidden="true"
+              class="relative flex-shrink-0 mt-2.5 w-3 h-3 rounded-full bg-tan ring-4 ring-cream"
+            />
+
+            <div class="flex-1 min-w-0 pb-2">
+              <h3 class="font-semibold text-ink text-lg leading-snug">
+                {e.title}
+              </h3>
+              {e.body && (
+                <p class="mt-1 text-ink-soft leading-relaxed">{e.body}</p>
+              )}
+              {e.note && (
+                <p class="mt-2 inline-block text-sm bg-tan/15 text-tan-deep px-3 py-1.5 rounded-lg border border-tan/25">
+                  {e.note}
+                </p>
+              )}
+            </div>
+          </li>
+        </Reveal>
+      ))
+    }
+  </ol>
+</div>
+
+<Reveal client:visible>
+  <p class="mt-12 text-ink-soft leading-relaxed bg-cream-soft/70 rounded-2xl p-5 border border-ink/5">
+    She needs <strong class="text-ink">adequate rest throughout the day</strong> — it
+    keeps her from getting snippy. If she seems overly excited or stimulated, that
+    usually means she needs sleep. She's no longer a puppy, so her emotions are
+    pretty in check and she doesn't have a lot of fluctuations.
+  </p>
+</Reveal>

@@ -1,0 +1,191 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.tsx";
+import Section from "../components/Section.astro";
+import Meet from "../components/Meet.astro";
+import Schedule from "../components/Schedule.astro";
+import Feeding from "../components/Feeding.astro";
+import CardGrid from "../components/CardGrid.astro";
+import AloneCallout from "../components/AloneCallout.astro";
+import Commands from "../components/Commands.astro";
+import Emergency from "../components/Emergency.astro";
+import Gallery from "../components/Gallery.astro";
+import Footer from "../components/Footer.astro";
+
+const tireOut = [
+  {
+    hint: "Training",
+    title: "Run through her commands",
+    body: "She knows sit, down, bang, turn, heel paw, stay, come, and leave-it. Five minutes is plenty to tire her out.",
+  },
+  {
+    hint: "Play",
+    title: "Fetch",
+    body: "Throw a ball for her and give her a small treat each time she brings it back to you.",
+  },
+  {
+    hint: "Play",
+    title: "Tug of war",
+    body: "Use a sturdy tug toy. Keep it at her eye level and pull straight back, not upwards, to avoid stressing her neck and back.",
+  },
+  {
+    hint: "Brain",
+    title: "Enrichment toy",
+    body: "Frozen watermelon, carrot, mixed veggies, or frozen yogurt. Engages her mind and helps her cool down.",
+  },
+  {
+    hint: "Brain",
+    title: "Scatter feed",
+    body: "Sprinkle her kibble across the kitchen floor or out in the yard. Turns a 90-second meal into a 10-minute sniffing workout.",
+  },
+  {
+    hint: "Brain",
+    title: "Muffin tin puzzle",
+    body: "Drop a few treats into the cups of a muffin tin and cover each cup with a tennis ball. She has to sniff and paw to uncover them.",
+  },
+  {
+    hint: "Play",
+    title: "Hide and seek",
+    body: "Ask her to stay, hide somewhere in the house, then call her. Combines a recall with a scent hunt — wears her out fast.",
+  },
+  {
+    hint: "Brain",
+    title: '"Find it" treat hunt',
+    body: "Hide 3–5 treats around a room while she watches, then release her with 'find it'. Make it harder each round by hiding more carefully.",
+  },
+  {
+    hint: "Brain",
+    title: '"Which hand?"',
+    body: "Hide a treat in one closed fist, hold out both hands, let her sniff and pick. Easy to play from the couch when you're low energy.",
+  },
+];
+
+const independent = [
+  {
+    hint: "Step 1",
+    title: "Find the orange bone holder",
+    body: "It's the orange plastic holder that screws onto a chew bone — prevents her from swallowing large pieces at once.",
+  },
+  {
+    hint: "Step 2",
+    title: "Screw in a fresh chew bone",
+    body: "Thread a new chew bone into the holder as close to the end as possible to extend the life of the bone.",
+  },
+  {
+    hint: "Step 3",
+    title: "Tighten it down",
+    body: "Make sure the bone is screwed in tightly so it doesn't come loose and become a choking hazard.",
+  },
+];
+
+const alone = [
+  {
+    hint: "Before",
+    title: "Take her on a longer walk",
+    body: "Tire her out beforehand so she's ready to settle and sleep.",
+  },
+  {
+    hint: "Setup",
+    title: "Leave one enrichment toy",
+    body: "Keeps her mentally stimulated if she gets bored. The bone holder works well for this.",
+  },
+  {
+    hint: "Setup",
+    title: "Quiet music in the background",
+    body: "There's an Alexa device with Spotify / Amazon Music connected. Soft music or radio helps her relax.",
+  },
+  {
+    hint: "Setup",
+    title: "Easy access to water and food",
+    body: "Make sure her bowls are filled — water always, food if she hasn't eaten yet.",
+  },
+  {
+    hint: "Goodbye",
+    title: "Leave without a fuss",
+    body: "Hand her the enrichment toy and try not to let her see you leave. No big farewells.",
+  },
+];
+---
+
+<Layout>
+  <Nav />
+  <main id="main">
+    <Hero client:load />
+
+    <Section
+      id="meet"
+      eyebrow="The pup"
+      title="Meet Shiro."
+      intro="A few quick facts so you know who you're dealing with."
+      tone="soft"
+    >
+      <Meet />
+    </Section>
+
+    <Section
+      id="schedule"
+      eyebrow="A normal day"
+      title="Her routine."
+      intro="Shiro thrives on routine. Stick close to these times and she'll be a happy, well-rested pup. She needs adequate rest throughout the day — it keeps her from getting snippy."
+    >
+      <Schedule />
+    </Section>
+
+    <Section
+      id="feeding"
+      eyebrow="Mealtime"
+      title="What & when she eats."
+      intro="Two main meals a day, fresh water always. No play or walks for at least 30–45 minutes after either meal — it helps prevent bloating."
+      tone="soft"
+    >
+      <Feeding />
+    </Section>
+
+    <Section
+      id="play"
+      eyebrow="Burn energy"
+      title="Tire her out."
+      intro="When you need to burn off her excess energy quickly, a focused play session is the most effective. These are high-intensity and help her settle down faster."
+    >
+      <CardGrid items={tireOut} accent="tan" />
+      <div class="mt-8">
+        <Commands />
+      </div>
+    </Section>
+
+    <Section
+      id="solo"
+      eyebrow="Independent activity"
+      title="The bone holder."
+      intro="If you need quiet time or want to give her a long-lasting treat that'll keep her occupied, the orange bone holder is the tool. It prevents her from swallowing large pieces of a chew at once."
+      tone="soft"
+    >
+      <CardGrid items={independent} accent="sky" />
+    </Section>
+
+    <Section
+      id="alone"
+      eyebrow="Stepping out"
+      title="Leaving her alone."
+      intro="A little setup helps her settle in and rest until you return. Run through this checklist before you head out."
+    >
+      <AloneCallout />
+      <CardGrid items={alone} accent="tan" />
+    </Section>
+
+    <Section
+      id="emergency"
+      eyebrow="Just in case"
+      title="Emergency."
+      tone="soft"
+    >
+      <Emergency />
+    </Section>
+
+    <Section id="gallery" eyebrow="The good stuff" title="Photos.">
+      <Gallery />
+    </Section>
+  </main>
+  <Footer />
+</Layout>

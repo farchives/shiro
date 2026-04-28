@@ -1,0 +1,31 @@
+---
+import Reveal from "./Reveal.tsx";
+
+const commands = [
+  "sit",
+  "down",
+  "bang",
+  "turn",
+  "heel paw",
+  "stay",
+  "come",
+  "leave-it",
+];
+---
+
+<Reveal client:visible>
+  <div class="rounded-3xl bg-cream-soft/70 p-6 sm:p-8 border border-ink/5">
+    <p class="text-xs font-bold tracking-[0.18em] uppercase text-ink-soft mb-4">
+      Commands she knows
+    </p>
+    <ul class="flex flex-wrap gap-2.5">
+      {
+        commands.map((cmd) => (
+          <li class="px-4 py-1.5 rounded-full bg-white text-ink font-medium border border-ink/10 shadow-soft text-sm">
+            {cmd}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Reveal>

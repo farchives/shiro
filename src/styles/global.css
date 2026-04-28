@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FAF7F2;
+  --color-cream-soft: #F4EFE6;
+  --color-ink: #2A2620;
+  --color-ink-soft: #5C5448;
+  --color-tan: #D4A574;
+  --color-tan-deep: #B8895A;
+  --color-sky: #8FB8DE;
+  --color-sky-deep: #6B97C2;
+  --color-coral: #E07856;
+  --color-coral-deep: #C45A3D;
+
+  --font-display: "Caveat", cursive;
+  --font-sans: "Quicksand", system-ui, sans-serif;
+
+  --shadow-soft: 0 2px 8px rgba(42, 38, 32, 0.04), 0 8px 24px rgba(42, 38, 32, 0.06);
+  --shadow-lift: 0 4px 12px rgba(42, 38, 32, 0.08), 0 16px 40px rgba(42, 38, 32, 0.1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-tan);
+    color: var(--color-cream);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-tan-deep);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

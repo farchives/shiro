@@ -1,0 +1,73 @@
+---
+import { Image } from "astro:assets";
+import Reveal from "./Reveal.tsx";
+import shiroPortrait from "../assets/photos/IMG_4676.jpg";
+
+const facts = [
+  { label: "Name", value: "Shiro" },
+  { label: "Breed", value: "Mini Goldendoodle" },
+  { label: "Age", value: "1 year" },
+  { label: "Weight", value: "~35 lbs*" },
+];
+
+const weightFootnote = "*on paper. In your arms she somehow weighs 80.";
+
+const traits: string[] = [
+  "Emotionally intelligent — she reads the room better than most people.",
+  "Loves humans. A little too much. Walks are a challenge because she has to say hi to everyone.",
+  "Loves kids, but doesn't quite understand she can't mount or climb them. Step in early.",
+  "Be strict with her — she will absolutely take advantage if you're not.",
+  "Very smart and a fast learner. Also: will 100% try to trick you for treats.",
+];
+---
+
+<div class="grid md:grid-cols-5 gap-8 items-center">
+  <Reveal client:visible className="md:col-span-2">
+    <div class="aspect-square rounded-[2.5rem] shadow-lift overflow-hidden bg-cream-soft">
+      <Image
+        src={shiroPortrait}
+        alt="Shiro standing on her hind legs in the kitchen"
+        widths={[400, 800, 1000]}
+        sizes="(min-width: 768px) 40vw, 100vw"
+        loading="eager"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </Reveal>
+
+  <div class="md:col-span-3 space-y-7">
+    <Reveal client:visible delay={0.1}>
+      <dl class="grid grid-cols-2 gap-4">
+        {
+          facts.map((f) => (
+            <div class="rounded-2xl bg-white p-4 border border-ink/5 shadow-soft">
+              <dt class="text-xs font-semibold tracking-wider uppercase text-ink-soft">
+                {f.label}
+              </dt>
+              <dd class="font-display text-3xl text-ink mt-0.5">{f.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-3 text-xs text-ink-soft italic">{weightFootnote}</p>
+    </Reveal>
+
+    <Reveal client:visible delay={0.2}>
+      <div>
+        <h3 class="text-sm font-bold tracking-wider uppercase text-ink-soft mb-3">
+          Things to know
+        </h3>
+        <ul class="space-y-2.5">
+          {
+            traits.map((t) => (
+              <li class="flex gap-3 text-ink leading-relaxed">
+                <span class="mt-1.5 inline-block w-2 h-2 rounded-full bg-tan-deep flex-shrink-0" />
+                <span>{t}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </Reveal>
+  </div>
+</div>

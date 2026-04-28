@@ -1,0 +1,34 @@
+---
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  tone?: "cream" | "soft";
+}
+
+const { id, eyebrow, title, intro, tone = "cream" } = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    "scroll-mt-20 py-24 md:py-32",
+    tone === "soft" ? "bg-cream-soft/50" : "bg-cream",
+  ]}
+>
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="max-w-2xl mb-14">
+      <p class="text-sm font-semibold tracking-[0.2em] uppercase text-tan-deep mb-3">
+        {eyebrow}
+      </p>
+      <h2 class="font-display text-6xl md:text-7xl text-ink leading-[0.95]">
+        {title}
+      </h2>
+      {intro && (
+        <p class="mt-6 text-lg text-ink-soft leading-relaxed">{intro}</p>
+      )}
+    </div>
+    <slot />
+  </div>
+</section>

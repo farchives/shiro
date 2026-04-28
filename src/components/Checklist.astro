@@ -1,0 +1,47 @@
+---
+import Reveal from "./Reveal.tsx";
+
+interface Item {
+  text: string;
+  emphasis?: string;
+}
+
+interface Props {
+  intro?: string;
+  heading: string;
+  items: Item[];
+  accent?: "tan" | "sky";
+}
+
+const { intro, heading, items, accent = "tan" } = Astro.props;
+const dot = accent === "sky" ? "bg-sky-deep" : "bg-tan-deep";
+---
+
+{intro && (
+  <Reveal client:visible>
+    <p class="text-lg text-ink-soft leading-relaxed mb-8 max-w-3xl">{intro}</p>
+  </Reveal>
+)}
+
+<Reveal client:visible delay={0.1}>
+  <div class="rounded-3xl bg-white p-7 sm:p-9 shadow-soft border border-ink/5">
+    <h3 class="text-sm font-bold tracking-[0.18em] uppercase text-ink-soft mb-6">
+      {heading}
+    </h3>
+    <ul class="space-y-4">
+      {
+        items.map((item) => (
+          <li class="flex gap-4 items-start">
+            <span class:list={["mt-2 inline-block w-2 h-2 rounded-full flex-shrink-0", dot]} />
+            <p class="text-ink leading-relaxed flex-1">
+              {item.emphasis && (
+                <strong class="text-ink font-semibold">{item.emphasis} </strong>
+              )}
+              <span class="text-ink-soft">{item.text}</span>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Reveal>

@@ -1,0 +1,145 @@
+---
+import Reveal from "./Reveal.tsx";
+
+const meals = [
+  { time: "8:00 – 9:00 AM", label: "Breakfast" },
+  { time: "5:30 – 7:30 PM", label: "Dinner window" },
+];
+
+const portion = [
+  { amount: "¼ packet", label: "Fresh food" },
+  { amount: "¾ cup", label: "Kibble" },
+];
+
+// Common treats safe for dogs. Add anything Shiro-specific to this list.
+const allowed: string[] = [
+  "Plain cooked chicken or turkey (no seasoning, no skin)",
+  "Carrots, cucumber, green beans",
+  "Blueberries, watermelon (no seeds), apple slices (no core or seeds)",
+  "Plain pumpkin (great for her tummy)",
+  "Plain Greek yogurt (small amounts)",
+  "Frozen treats — frozen yogurt, frozen veggies, frozen watermelon",
+  "Her training treats (jar on the counter)",
+];
+
+// Common items that are toxic to dogs. Add anything Shiro-specific to this list.
+const forbidden: string[] = [
+  "Chocolate, coffee, anything caffeinated",
+  "Grapes, raisins, currants",
+  "Onions, garlic, chives, leeks",
+  "Xylitol (sugar-free gum, mints, some peanut butters — check the label)",
+  "Macadamia nuts",
+  "Avocado",
+  "Alcohol and raw bread dough",
+  "Cooked bones, fatty trimmings",
+  "Raw or undercooked meat, eggs, fish",
+];
+---
+
+<div class="grid lg:grid-cols-3 gap-5">
+  <Reveal client:visible>
+    <div class="rounded-3xl bg-tan/15 p-7 border border-tan/30 h-full">
+      <h3 class="font-display text-3xl text-ink mb-5">Meal times</h3>
+      <ul class="space-y-3.5">
+        {
+          meals.map((m) => (
+            <li class="pb-3 border-b border-tan/30 last:border-0 last:pb-0">
+              <p class="font-semibold text-ink">{m.label}</p>
+              <p class="text-sm text-ink-soft">{m.time}</p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-6 rounded-2xl bg-white/70 p-5 border border-tan/25">
+        <p class="text-xs font-bold tracking-[0.18em] uppercase text-tan-deep mb-3">
+          Per meal — mix together
+        </p>
+        <ul class="space-y-2">
+          {
+            portion.map((p) => (
+              <li class="flex items-baseline gap-3">
+                <span class="font-display text-2xl text-ink leading-none w-20 flex-shrink-0">
+                  {p.amount}
+                </span>
+                <span class="text-ink-soft text-[15px]">{p.label}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-3 text-xs text-ink-soft italic leading-relaxed">
+          Bump it up a little if she's had a particularly active day.
+        </p>
+      </div>
+
+      <p class="mt-5 text-sm text-ink-soft leading-relaxed">
+        No play or walks for at least 30–45 minutes <strong class="text-ink font-semibold">after either meal</strong> — this helps prevent bloating, which can be serious in dogs. Fresh water at all times.
+      </p>
+    </div>
+  </Reveal>
+
+  <Reveal client:visible delay={0.1}>
+    <div class="rounded-3xl bg-white p-7 shadow-soft border border-ink/5 h-full">
+      <h3 class="font-display text-3xl text-ink mb-5">Treats & snacks</h3>
+      {allowed.length > 0 ? (
+        <ul class="space-y-2.5">
+          {
+            allowed.map((a) => (
+              <li class="flex gap-3 text-ink-soft leading-relaxed text-[15px]">
+                <span class="mt-1.5 text-tan-deep flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                <span>{a}</span>
+              </li>
+            ))
+          }
+        </ul>
+      ) : (
+        <p class="text-ink-soft italic text-sm bg-cream-soft/70 rounded-xl p-4 border border-ink/5">
+          Add the treats and snacks she's allowed to have.
+        </p>
+      )}
+
+      <div class="mt-5 flex gap-3 items-start rounded-xl bg-coral/10 border border-coral/25 p-4">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="text-coral-deep flex-shrink-0 mt-0.5" aria-hidden="true">
+          <path d="M12 9v4" />
+          <path d="M12 17h.01" />
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+        </svg>
+        <p class="text-sm text-ink leading-relaxed">
+          <strong class="font-semibold">Mild beef allergy.</strong>
+          <span class="text-ink-soft"> Small quantities only — and avoid if you can.</span>
+        </p>
+      </div>
+    </div>
+  </Reveal>
+
+  <Reveal client:visible delay={0.2}>
+    <div class="rounded-3xl bg-coral/10 p-7 border border-coral/30 h-full">
+      <h3 class="font-display text-3xl text-coral-deep mb-5">Never feed</h3>
+      {forbidden.length > 0 ? (
+        <ul class="space-y-2.5">
+          {
+            forbidden.map((f) => (
+              <li class="flex gap-3 text-ink-soft leading-relaxed text-[15px]">
+                <span class="mt-1.5 text-coral-deep flex-shrink-0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </span>
+                <span>{f}</span>
+              </li>
+            ))
+          }
+        </ul>
+      ) : (
+        <p class="text-coral-deep/80 italic text-sm bg-coral/5 rounded-xl p-4 border border-coral/20">
+          Add the foods that are off-limits (chocolate, grapes, xylitol, etc.).
+        </p>
+      )}
+    </div>
+  </Reveal>
+</div>

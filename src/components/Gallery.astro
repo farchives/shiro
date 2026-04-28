@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import Reveal from "./Reveal.tsx";
+import type { ImageMetadata } from "astro";
+
+// Auto-load every photo in src/assets/photos/. Add or remove files there
+// to update the gallery — no code changes required.
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/photos/*.{jpg,jpeg,png,webp}",
+  { eager: true },
+);
+
+const photos = Object.entries(modules)
+  .map(([path, mod]) => ({
+    src: mod.default,
+    name: path.split("/").pop()!,
+  }))
+  // Hero already shows IMG_8727 — skip it in the gallery
+  .filter((p) => !p.name.startsWith("IMG_8727"))
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+// Pre-computed slight tilts for that "scattered photo" feel
+const tilts = [-2, 1, -1, 2, -3, 1, -1, 2, -2, 0];
+---
+
+<div class="columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
+  {
+    photos.map((photo, i) => (
+      <Reveal client:visible delay={(i % 4) * 0.06} className="mb-5 break-inside-avoid">
+        <figure
+          class="rounded-3xl overflow-hidden shadow-soft hover:shadow-lift transition-all duration-300 bg-cream-soft"
+          style={`transform: rotate(${tilts[i % tilts.length]}deg);`}
+        >
+          <Image
+            src={photo.src}
+            alt="A photo of Shiro"
+            widths={[400, 800, 1200]}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            loading={i < 3 ? "eager" : "lazy"}
+            class="w-full h-auto block"
+          />
+        </figure>
+      </Reveal>
+    ))
+  }
+</div>
