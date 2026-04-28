@@ -1,7 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#D4A574">
-  <ellipse cx="6" cy="9" rx="2" ry="2.6"/>
-  <ellipse cx="18" cy="9" rx="2" ry="2.6"/>
-  <ellipse cx="9" cy="5" rx="1.7" ry="2.2"/>
-  <ellipse cx="15" cy="5" rx="1.7" ry="2.2"/>
-  <path d="M12 11c-3 0-5 2.2-5 5 0 2 1.6 3 3.2 3 1 0 1.3-.4 1.8-.4s.8.4 1.8.4c1.6 0 3.2-1 3.2-3 0-2.8-2-5-5-5z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="32" fill="#FAF7F2"/>
+
+  <!-- Floppy ears (goldendoodle-style) -->
+  <ellipse cx="14" cy="28" rx="9" ry="14" fill="#D4A574" transform="rotate(-18 14 28)"/>
+  <ellipse cx="50" cy="28" rx="9" ry="14" fill="#D4A574" transform="rotate(18 50 28)"/>
+
+  <!-- Face -->
+  <ellipse cx="32" cy="36" rx="18" ry="17" fill="#E8C9A0"/>
+
+  <!-- Snout -->
+  <ellipse cx="32" cy="44" rx="9" ry="7" fill="#FAF7F2"/>
+
+  <!-- Eyes -->
+  <circle cx="25" cy="32" r="2.4" fill="#2A2620"/>
+  <circle cx="39" cy="32" r="2.4" fill="#2A2620"/>
+
+  <!-- Nose -->
+  <ellipse cx="32" cy="41" rx="2.6" ry="2" fill="#2A2620"/>
+
+  <!-- Tongue -->
+  <path d="M 30 47 Q 32 51 34 47 Q 34 50 32 50 Q 30 50 30 47 Z" fill="#E07856"/>
 </svg>
