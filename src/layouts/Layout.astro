@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import SplashScreen from "../components/SplashScreen.tsx";
 
 interface Props {
   title?: string;
@@ -31,6 +32,7 @@ const {
     <title>{title}</title>
   </head>
   <body>
+    <SplashScreen client:load />
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-ink focus:text-cream focus:px-4 focus:py-2 focus:rounded-lg"
