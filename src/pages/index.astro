@@ -6,6 +6,7 @@ import Section from "../components/Section.astro";
 import Meet from "../components/Meet.astro";
 import Schedule from "../components/Schedule.astro";
 import Feeding from "../components/Feeding.astro";
+import Grooming from "../components/Grooming.astro";
 import CardGrid from "../components/CardGrid.astro";
 import AloneCallout from "../components/AloneCallout.astro";
 import Commands from "../components/Commands.astro";
@@ -17,7 +18,7 @@ const tireOut = [
   {
     hint: "Training",
     title: "Run through her commands",
-    body: "She knows sit, down, bang, turn, heel paw, stay, come, and leave-it. Five minutes is plenty to tire her out.",
+    body: "Five minutes of running her through the cues she knows (listed below) is enough to wear her out.",
   },
   {
     hint: "Play",
@@ -115,9 +116,9 @@ const alone = [
 
     <Section
       id="meet"
-      eyebrow="The pup"
-      title="Meet Shiro."
-      intro="A few quick facts so you know who you're dealing with."
+      eyebrow="Hi, I'm"
+      title="Shiro."
+      intro="A quick rundown so you know who you're dealing with."
       tone="soft"
     >
       <Meet />
@@ -127,7 +128,7 @@ const alone = [
       id="schedule"
       eyebrow="A normal day"
       title="Her routine."
-      intro="Shiro thrives on routine. Stick close to these times and she'll be a happy, well-rested pup. She needs adequate rest throughout the day — it keeps her from getting snippy."
+      intro="Shiro thrives on routine. Stick close to these times and she'll be a happy, well-rested pup."
     >
       <Schedule />
     </Section>
@@ -140,6 +141,15 @@ const alone = [
       tone="soft"
     >
       <Feeding />
+    </Section>
+
+    <Section
+      id="grooming"
+      eyebrow="Keeping her tidy"
+      title="Grooming."
+      intro="Doodle coats need regular maintenance — a few minutes a few times a week keeps her comfortable and her coat in good shape."
+    >
+      <Grooming />
     </Section>
 
     <Section

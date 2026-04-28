@@ -18,6 +18,24 @@ const contacts = [
     badge: "Open 24 hrs",
   },
 ];
+
+const vitals = [
+  {
+    label: "Sex",
+    value: "Female",
+    detail: "Spayed",
+  },
+  {
+    label: "Microchipped",
+    value: "Yes",
+    detail: "Chip ID: —",
+  },
+  {
+    label: "Insured",
+    value: "Yes",
+    detail: "Provider: —",
+  },
+];
 ---
 
 <Reveal client:visible>
@@ -40,6 +58,9 @@ const contacts = [
       </div>
     </div>
 
+    <p class="text-xs font-bold tracking-[0.2em] uppercase text-ink-soft mb-4">
+      Vets
+    </p>
     <ul class="grid md:grid-cols-2 gap-5">
       {
         contacts.map((c) => (
@@ -75,5 +96,26 @@ const contacts = [
         ))
       }
     </ul>
+
+    <div class="mt-8 pt-8 border-t border-coral/20">
+      <p class="text-xs font-bold tracking-[0.2em] uppercase text-ink-soft mb-4">
+        Her vitals
+      </p>
+      <ul class="grid sm:grid-cols-3 gap-4">
+        {
+          vitals.map((v) => (
+            <li class="rounded-2xl bg-white p-5 border border-ink/5">
+              <p class="text-xs font-semibold tracking-wider uppercase text-ink-soft">
+                {v.label}
+              </p>
+              <p class="font-display text-2xl text-ink mt-1 leading-none">
+                {v.value}
+              </p>
+              <p class="text-sm text-ink-soft mt-2">{v.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </Reveal>

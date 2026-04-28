@@ -11,51 +11,51 @@ const events = [
   {
     time: "8:00 – 9:00 AM",
     title: "Breakfast",
-    note: "Same rule as dinner — no play or walks for 30–45 minutes after, to avoid bloating.",
+    note: "No play or walks for 30–45 minutes after — same rule as dinner, helps prevent bloating.",
   },
-  { time: "9:00 AM", title: "Nap time" },
-  { time: "11:00 AM", title: "Nap time continues" },
-  { time: "11:30 AM", title: "Midday play and nap time continues" },
-  { time: "1:00 PM", title: "Afternoon nap" },
   {
-    time: "2:00 PM",
-    title: "Potty break",
-    body: "She'll need to go out to pee and poop around this time.",
+    time: "9:00 AM – 1:00 PM",
+    title: "Morning rest",
+    body: "Long stretch of naps with a bit of play around 11:30 AM. Let her sleep — it keeps her even-tempered.",
+    muted: true,
   },
-  { time: "3:00 PM", title: "Afternoon nap continues" },
+  {
+    time: "1:00 – 4:00 PM",
+    title: "Afternoon naps",
+    body: "More rest, with a potty break around 2:00 PM (pee and poop).",
+    muted: true,
+  },
   {
     time: "4:30 PM",
     title: "Longer walk + potty break",
-    body: "Pee and maybe poop.",
+    body: "Pee and maybe poop. Good time for a real outing.",
   },
   {
-    time: "5:30 PM",
-    title: "Dinner window opens",
-    body: "You can feed her anytime between now and 7:30 PM.",
+    time: "5:30 – 7:30 PM",
+    title: "Dinner window",
+    body: "Feed her any time in this window.",
+    note: "No play or walks for at least 30–45 minutes after dinner.",
   },
   {
-    time: "6:00 PM",
-    title: "Dinner window continues",
-    body: "Don't play or take her out right after she's eaten.",
-    note: "Give her at least 30–45 minutes after dinner before any activity.",
+    time: "7:00 PM",
+    title: "Evening nap",
+    muted: true,
   },
-  { time: "7:00 PM", title: "Evening nap" },
   {
-    time: "8:30 PM",
+    time: "8:30 – 9:00 PM",
     title: "Active time",
-    body: "She'll be playing and looking for some attention.",
+    body: "She'll be playing and looking for some attention. Or she might just nap.",
   },
-  { time: "9:00 PM", title: "Active time continues — or she may just nap" },
   {
     time: "10:00 PM",
-    title: "Winding down for the night",
-    body: "Followed by bedtime.",
-    note: "Keep her out of the room. If you want her to sleep in the room, don't let her on the bed.",
+    title: "Winding down",
+    body: "Bedtime soon.",
+    note: "She doesn't sleep in the bedroom. If you'd rather have her in the room, that's fine — just don't let her on the bed.",
   },
   {
     time: "10:30 – 11:00 PM",
-    title: "Last potty break (optional but recommended)",
-    body: "Take her out for a quick pee right before you head to bed.",
+    title: "Last potty break",
+    body: "Quick pee right before you head to bed — optional but recommended.",
     note: "Doing this lets you sleep in until 8:30–9:00 AM the next morning.",
   },
 ];
@@ -67,31 +67,51 @@ const events = [
     class="absolute left-[8.5rem] sm:left-[10rem] top-2 bottom-2 w-px bg-ink/10"
   ></div>
 
-  <ol class="space-y-6">
+  <ol class="space-y-7">
     {
       events.map((e, i) => (
         <Reveal client:visible delay={Math.min(i * 0.04, 0.4)}>
           <li class="relative flex gap-5 sm:gap-7 items-start">
             <div class="w-28 sm:w-32 flex-shrink-0 pt-1.5 text-right">
-              <span class="font-semibold text-ink text-sm sm:text-base tabular-nums">
+              <span
+                class:list={[
+                  "font-semibold text-sm sm:text-base tabular-nums",
+                  e.muted ? "text-ink-soft" : "text-ink",
+                ]}
+              >
                 {e.time}
               </span>
             </div>
 
             <span
               aria-hidden="true"
-              class="relative flex-shrink-0 mt-2.5 w-3 h-3 rounded-full bg-tan ring-4 ring-cream"
+              class:list={[
+                "relative flex-shrink-0 mt-2.5 w-3 h-3 rounded-full ring-4 ring-cream",
+                e.muted ? "bg-ink/20" : "bg-tan",
+              ]}
             />
 
-            <div class="flex-1 min-w-0 pb-2">
-              <h3 class="font-semibold text-ink text-lg leading-snug">
+            <div class="flex-1 min-w-0 pb-1">
+              <h3
+                class:list={[
+                  "font-semibold leading-snug",
+                  e.muted ? "text-ink-soft text-base" : "text-ink text-lg",
+                ]}
+              >
                 {e.title}
               </h3>
               {e.body && (
-                <p class="mt-1 text-ink-soft leading-relaxed">{e.body}</p>
+                <p
+                  class:list={[
+                    "mt-1 leading-relaxed",
+                    e.muted ? "text-ink-soft text-[15px]" : "text-ink-soft",
+                  ]}
+                >
+                  {e.body}
+                </p>
               )}
               {e.note && (
-                <p class="mt-2 inline-block text-sm bg-tan/15 text-tan-deep px-3 py-1.5 rounded-lg border border-tan/25">
+                <p class="mt-2.5 inline-block text-sm bg-tan/15 text-tan-deep px-3 py-1.5 rounded-lg border border-tan/25">
                   {e.note}
                 </p>
               )}
@@ -104,10 +124,15 @@ const events = [
 </div>
 
 <Reveal client:visible>
-  <p class="mt-12 text-ink-soft leading-relaxed bg-cream-soft/70 rounded-2xl p-5 border border-ink/5">
-    She needs <strong class="text-ink">adequate rest throughout the day</strong> — it
-    keeps her from getting snippy. If she seems overly excited or stimulated, that
-    usually means she needs sleep. She's no longer a puppy, so her emotions are
-    pretty in check and she doesn't have a lot of fluctuations.
-  </p>
+  <div class="mt-14 rounded-2xl bg-cream-soft/70 border border-ink/5 p-6">
+    <p class="text-xs font-bold tracking-[0.18em] uppercase text-tan-deep mb-2">
+      One thing to remember
+    </p>
+    <p class="text-ink-soft leading-relaxed">
+      She needs <strong class="text-ink">plenty of rest throughout the day</strong> —
+      it's what keeps her even-tempered. If she seems overly excited or stimulated,
+      she probably needs sleep. She's no longer a puppy, so she's pretty steady, but
+      the naps are doing real work.
+    </p>
+  </div>
 </Reveal>

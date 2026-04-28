@@ -66,14 +66,17 @@ export default function Hero() {
         </motion.p>
 
         <motion.a
-          href="#schedule"
+          href="#meet"
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
           whileHover={reduce ? undefined : { y: -2 }}
           className="mt-8 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-ink text-cream font-semibold shadow-lift hover:bg-ink/90 transition-colors"
         >
-          Start with her schedule
+          Meet Shiro
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
         </motion.a>
       </motion.div>
 

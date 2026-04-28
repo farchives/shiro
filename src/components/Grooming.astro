@@ -1,0 +1,54 @@
+---
+import Reveal from "./Reveal.tsx";
+
+const tasks = [
+  {
+    cadence: "Every 2 days",
+    title: "Brush her teeth",
+    body: "Use her dog toothbrush and dog-safe toothpaste (never human toothpaste — it has xylitol).",
+  },
+  {
+    cadence: "Every 4–5 days",
+    title: "Comb her coat",
+    body: "Use the metal comb to catch tangles before they turn into mats. Doodle coats need this.",
+  },
+  {
+    cadence: "Weekly",
+    title: "Clean her ears",
+    body: "Doodles are prone to ear gunk. Quick wipe with the ear cleaner keeps them healthy.",
+  },
+  {
+    cadence: "Every time she comes home",
+    title: "Wipe her paws",
+    body: "Quick wipe-down after walks or yard time. Catches dirt before it ends up on the couch.",
+  },
+];
+---
+
+<div class="grid sm:grid-cols-2 gap-5">
+  {
+    tasks.map((t, i) => (
+      <Reveal client:visible delay={i * 0.07}>
+        <article class="h-full rounded-3xl bg-white p-7 shadow-soft border border-ink/5 hover:shadow-lift hover:-translate-y-1 transition-all duration-300">
+          <span class="inline-block text-[11px] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full bg-tan/15 text-tan-deep border border-tan/30 mb-4">
+            {t.cadence}
+          </span>
+          <h3 class="font-semibold text-xl text-ink mb-2">{t.title}</h3>
+          <p class="text-ink-soft leading-relaxed text-[15px]">{t.body}</p>
+        </article>
+      </Reveal>
+    ))
+  }
+</div>
+
+<Reveal client:visible delay={0.3}>
+  <div class="mt-6 flex gap-3 items-start rounded-2xl bg-sky/10 border border-sky/30 p-5">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-deep flex-shrink-0 mt-0.5" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+    <p class="text-ink leading-relaxed">
+      <strong class="font-semibold">Tick & flea prevention is handled.</strong>
+      <span class="text-ink-soft"> She's on monthly preventative medication, so no need to worry about that.</span>
+    </p>
+  </div>
+</Reveal>
