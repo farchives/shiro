@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import Reveal from "./Reveal.tsx";
+import milkBone from "../assets/treats/milk-bone.png";
+import dentalChews from "../assets/treats/dental-chews.png";
 
 const meals = [
   { time: "8:00 – 9:00 AM", label: "Breakfast" },
@@ -7,8 +10,8 @@ const meals = [
 ];
 
 const portion = [
-  { amount: "¼ packet", label: "Fresh food" },
-  { amount: "¾ cup", label: "Kibble" },
+  { amount: "½ cup", label: "Dry food" },
+  { amount: "¼ cup", label: "Wet food" },
 ];
 
 // Common treats safe for dogs. Add anything Shiro-specific to this list.
@@ -20,6 +23,23 @@ const allowed: string[] = [
   "Plain Greek yogurt (small amounts)",
   "Frozen treats — frozen yogurt, frozen veggies, frozen watermelon",
   "Her training treats (jar on the counter)",
+  "Half a Milk-Bone between meals only — it's filling",
+  "Half a dental chew every 3 days for breath",
+];
+
+const treatReferences = [
+  {
+    src: milkBone,
+    alt: "Milk-Bone treat reference",
+    label: "Milk-Bone",
+    note: "Half between meals",
+  },
+  {
+    src: dentalChews,
+    alt: "Dental chew reference",
+    label: "Dental chew",
+    note: "Half every 3 days",
+  },
 ];
 
 // Common items that are toxic to dogs. Add anything Shiro-specific to this list.
@@ -101,6 +121,28 @@ const forbidden: string[] = [
           Add the treats and snacks she's allowed to have.
         </p>
       )}
+
+      <div class="mt-5 grid grid-cols-2 gap-3">
+        {
+          treatReferences.map((treat) => (
+            <figure class="rounded-2xl bg-cream-soft/70 border border-ink/5 overflow-hidden">
+              <div class="aspect-[4/3] bg-white">
+                <Image
+                  src={treat.src}
+                  alt={treat.alt}
+                  widths={[240, 360, 520]}
+                  sizes="(min-width: 1024px) 12vw, 40vw"
+                  class="h-full w-full object-contain p-3"
+                />
+              </div>
+              <figcaption class="p-3">
+                <p class="font-semibold text-sm text-ink">{treat.label}</p>
+                <p class="text-xs text-ink-soft leading-snug">{treat.note}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
 
       <div class="mt-5 flex gap-3 items-start rounded-xl bg-coral/10 border border-coral/25 p-4">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="text-coral-deep flex-shrink-0 mt-0.5" aria-hidden="true">
